@@ -1,6 +1,6 @@
 # coding: utf-8
 import requests
-import datetime
+import time
 import re
 from lxml import etree
 from smtplib import SMTP_SSL
@@ -140,7 +140,8 @@ table_html = u'''
   </table>
 '''.format(table_content)
 
-html = open('daxingshuiku.html', 'w')
+unix_time = int(time.time())
+html = open('daxingshuiku-{}.html'.format(unix_time), 'w')
 
 html.write(
     u"""
@@ -149,7 +150,7 @@ html.write(
     <title>大型水库报告</title>
     </head>
     <body>
-""".format(datetime.datetime.now()).encode('gb2312')
+""".encode('gb2312')
            )
 
 # print table_html
@@ -158,4 +159,5 @@ html.close()
 
 Mail.send_mail(mail_from='812787189@qq.com', mail_to='812787189@qq.com', host='smtp.qq.com', content_type='html',
                username='812787189@qq.com', password='dvtzncmdhmjwbejd',
-               subject=u'大型水库报告({})'.format(datetime.datetime.now()), content=table_html)
+               subject=u'大型水库报告({})'.format(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(unix_time))),
+               content=table_html)
