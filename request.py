@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 class Mail(object):
     mail_info = {
         "from": "812787189@qq.com",
-        "to": "812787189@qq.com",
+        "to": '812787189@qq.com',
         "hostname": "smtp.qq.com",
         "username": "812787189@qq.com",
         "password": "dvtzncmdhmjwbejd",
@@ -21,7 +21,7 @@ class Mail(object):
     }
 
     @classmethod
-    def send_mail(cls, mail_from='', mail_to='', host='', username='', password='', subject='', content='',
+    def send_mail(cls, mail_from='', mail_to=None, host='', username='', password='', subject='', content='',
                   content_type='plain', encoding='utf-8'):
         # 这里使用SMTP_SSL就是默认使用465端口
         smtp = SMTP_SSL(host)
@@ -157,7 +157,13 @@ html.write(
 html.write(table_html.encode('GBK'))
 html.close()
 
-Mail.send_mail(mail_from='812787189@qq.com', mail_to='812787189@qq.com', host='smtp.qq.com', content_type='html',
-               username='812787189@qq.com', password='dvtzncmdhmjwbejd',
-               subject=u'大型水库报告({})'.format(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(unix_time))),
-               content=table_html)
+Mail.send_mail(
+    mail_from='812787189@qq.com',
+    mail_to='812787189@qq.com,desolator@sina.com',
+    host='smtp.qq.com',
+    content_type='html',
+    username='812787189@qq.com',
+    password='dvtzncmdhmjwbejd',
+    subject=u'大型水库报告({})'.format(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(unix_time))),
+    content=table_html
+)
