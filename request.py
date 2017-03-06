@@ -88,11 +88,11 @@ for i in tr_list:
             xingzhengqu=xingzhengqu.decode('unicode-escape').encode('gb2312'),
             heming=heming.decode('unicode-escape').encode('utf-8'),
             kuming=kuming.decode('unicode-escape').encode('utf-8'),
-            kushuiwei=kushuiwei.replace(u' ', '').decode('unicode-escape').encode('utf-8'),
+            kushuiwei=kushuiwei.replace(u'\xa0', ''),
             kushuiwei_delta_flag=kushuiwei_delta_flag.decode('unicode-escape').encode('utf-8'),
             xushuiliang=xushuiliang.decode('unicode-escape').encode('gb2312'),
             ruku=ruku,
-            didinggaocheng=didinggaocheng.replace(u' ', '').decode('unicode-escape').encode('utf-8'),
+            didinggaocheng=didinggaocheng.replace(u'\xa0', ''),
         )
     )
 # print output_list
