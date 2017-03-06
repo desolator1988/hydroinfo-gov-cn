@@ -32,8 +32,8 @@ class Mail(object):
 
         msg = MIMEText(content, content_type, encoding)
         msg["Subject"] = Header(subject, encoding)
-        msg["from"] = mail_from
-        msg["to"] = mail_to
+        msg["From"] = mail_from
+        msg["To"] = mail_to
 
         smtp.sendmail(mail_from, mail_to, msg.as_string())
 
@@ -88,11 +88,11 @@ for i in tr_list:
             xingzhengqu=xingzhengqu.decode('unicode-escape').encode('gb2312'),
             heming=heming.decode('unicode-escape').encode('utf-8'),
             kuming=kuming.decode('unicode-escape').encode('utf-8'),
-            kushuiwei=kushuiwei.replace(u' ', ''),
+            kushuiwei=kushuiwei.replace(u' ', '').decode('unicode-escape').encode('utf-8'),
             kushuiwei_delta_flag=kushuiwei_delta_flag.decode('unicode-escape').encode('utf-8'),
             xushuiliang=xushuiliang.decode('unicode-escape').encode('gb2312'),
             ruku=ruku,
-            didinggaocheng=didinggaocheng.replace(u' ', ''),
+            didinggaocheng=didinggaocheng.replace(u' ', '').decode('unicode-escape').encode('utf-8'),
         )
     )
 # print output_list
@@ -159,7 +159,7 @@ html.close()
 
 Mail.send_mail(
     mail_from='812787189@qq.com',
-    mail_to='812787189@qq.com,desolator@sina.com',
+    mail_to='602971152@qq.com,812787189@qq.com',
     host='smtp.qq.com',
     content_type='html',
     username='812787189@qq.com',
